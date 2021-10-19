@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TaskListView: View {
     @StateObject private var viewModel = TaskVM()
-    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         NavigationView {
@@ -24,7 +23,7 @@ struct TaskListView: View {
                 }
             })
             .sheet(isPresented: viewModel.isAdding ? $viewModel.isAdding : $viewModel.isEditing) {
-                NewTaskSheet(viewModel: viewModel).environment(\.managedObjectContext, moc)
+                NewTaskSheet(viewModel: viewModel)
             }
         }
     }
