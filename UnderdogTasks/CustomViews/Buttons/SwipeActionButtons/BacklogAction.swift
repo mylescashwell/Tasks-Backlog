@@ -10,10 +10,10 @@ import SwiftUI
 struct BacklogAction: View {
     @ObservedObject var viewModel: TaskVM
     @ObservedObject var task: FetchedResults<Task>.Element
+    
     var body: some View {
         Button(role: .cancel) {
             withAnimation {
-                viewModel.backloggedTask = task
                 viewModel.backlogTask(task: task)
             }
         } label: {

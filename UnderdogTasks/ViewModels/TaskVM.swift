@@ -34,10 +34,8 @@ final class TaskVM: ObservableObject {
         isAdding ? "Add to\nToday's List" : "Edit\nThis Task"
     }
     
-    func addTask(context: NSManagedObjectContext) {
-        // MC - Test function without context parameter, initialize Task straight from PC.s.c.viewContext
-        // MC - Testing if @Environment MOC key is needed for AddTaskButton
-        let newTask = Task(context: context)
+    func addTask() {
+        let newTask = Task(context: PersistenceController.shared.container.viewContext)
         newTask.title      = title
         newTask.notes      = notes
         newTask.date       = date
@@ -71,8 +69,6 @@ final class TaskVM: ObservableObject {
     }
     
     //MARK: - Backlog Configurations
-    @Published var backloggedTask: Task!
-
     var backlogs: [Task] = []
     private lazy var backlogFetchRequest: NSFetchRequest<Task> = {
         let request = NSFetchRequest<Task>(entityName: "Task")

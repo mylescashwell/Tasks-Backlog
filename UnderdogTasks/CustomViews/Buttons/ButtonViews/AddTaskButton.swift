@@ -9,12 +9,11 @@ import SwiftUI
 
 struct AddTaskButton: View {
     @ObservedObject var viewModel: TaskVM
-    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         Button {
             if viewModel.taskToUpdate == nil {
-                viewModel.addTask(context: moc)
+                viewModel.addTask()
             } else {
                 viewModel.updateTask()
             }
